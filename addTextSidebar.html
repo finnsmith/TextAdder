@@ -1,0 +1,54 @@
+<link href="https://ssl.gstatic.com/docs/script/css/add-ons.css" rel="stylesheet"> 
+<?!= include('Stylesheet'); ?>
+
+<div class="sidebar"> 
+    <div class="block form-group">
+        <input type="text" id="wordAddText" placeholder="Enter text to add"/>      
+    </div>
+    <div class="block form-group">
+        <select id="frontBackSelection">
+            <option>at the beginning of</option>
+            <option>at the end of </option>
+        </select>
+        <select id="wordSelection" >
+            <option>just the first word</option>
+            <option>every word</option>
+        </select>
+    </div>
+    <!--
+    <div class="block form-group">
+        <input class="wordSelection" type="radio" name="wordSelection" value="firstWord" checked>Just the first word<br/>
+        <input class="wordSelection" type="radio" name="wordSelection" value="allWords">Every word
+    </div>
+    <div class="block form-group">At the:</div>
+    <div class="block form-gzroup">
+        <input class="frontBackSelection" type="radio" name="frontBackSelection" value="front" checked>Beginning<br/>
+        <input class="frontBackSelection" type="radio" name="frontBackSelection" value="back">End
+    </div>
+   -->
+    <div class="block form-group">
+        <div style="width:100%">
+            <button style="width:100%" class="blue" id="addButton">Add text!</button>
+        </div>        
+    </div>
+    
+</div>
+ 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+ 
+<script>
+ $(function() {
+   $('#addButton').click(function() {
+       if ($('#wordAddText').val() != "Enter text to add") {         
+           google.script.run.addText($('#wordAddText').val(), 
+           $('#wordSelection').find(":selected").val(),
+           $('#frontBackSelection').find(":selected").val()
+           /*
+           $('input[name=wordSelection]:checked').val(), 
+           $('input[name=frontBackSelection]:checked').val()
+           */
+           );
+       }
+   });
+ });
+</script>
